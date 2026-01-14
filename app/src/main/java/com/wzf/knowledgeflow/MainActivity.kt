@@ -7,10 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -73,9 +73,9 @@ enum class AppDestinations(
     val label: String,
     val icon: ImageVector,
 ) {
-    KNOWLEDGE_LIST("知识清单", Icons.Default.List),
+    KNOWLEDGE_LIST("知识清单", Icons.AutoMirrored.Filled.List),
     DAILY_TASKS("每日任务", Icons.Default.CheckCircle),
-    READ_LATER("稍后读", Icons.Default.Bookmark),
+    READ_LATER("精选内容", Icons.Default.Star),
     SETTINGS("设置", Icons.Default.Settings),
 }
 
