@@ -25,6 +25,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import com.wzf.knowledgeflow.ui.theme.KnowledgeFlowTheme
+import com.wzf.knowledgeflow.ui.screens.DailyTasksScreen
+import com.wzf.knowledgeflow.ui.screens.KnowledgeListScreen
+import com.wzf.knowledgeflow.ui.screens.ReadLaterScreen
+import com.wzf.knowledgeflow.ui.screens.SettingsScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,10 +65,12 @@ fun KnowledgeFlowApp() {
         }
     ) {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-            Greeting(
-                name = "Android",
-                modifier = Modifier.padding(innerPadding)
-            )
+            when (currentDestination) {
+                AppDestinations.KNOWLEDGE_LIST -> KnowledgeListScreen(Modifier.padding(innerPadding))
+                AppDestinations.DAILY_TASKS -> DailyTasksScreen(Modifier.padding(innerPadding))
+                AppDestinations.READ_LATER -> ReadLaterScreen(Modifier.padding(innerPadding))
+                AppDestinations.SETTINGS -> SettingsScreen(Modifier.padding(innerPadding))
+            }
         }
     }
 }
@@ -73,24 +79,19 @@ enum class AppDestinations(
     val label: String,
     val icon: ImageVector,
 ) {
-    KNOWLEDGE_LIST("知识清单", Icons.AutoMirrored.Filled.List),
-    DAILY_TASKS("每日任务", Icons.Default.CheckCircle),
-    READ_LATER("精选内容", Icons.Default.Star),
-    SETTINGS("设置", Icons.Default.Settings),
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+    KNOWLEDGE_LIST("Knowledge", Icons.AutoMirrored.Filled.List),
+    DAILY_TASKS("Daily", Icons.Default.CheckCircle),
+    READ_LATER("Read Later", Icons.Default.Star),
+    SETTINGS("Settings", Icons.Default.Settings),
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     KnowledgeFlowTheme {
-        Greeting("Android")
+        KnowledgeListScreen()
     }
 }
+
+
+
